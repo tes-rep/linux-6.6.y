@@ -12,7 +12,7 @@
 #include "meson-sc2.dtsi"
 
 / {
-	model = "AT01 houjie";
+	model = "Amlogic S905X4";
 	compatible = "amlogic,sc2";
 	interrupt-parent = <&gic>;
 	#address-cells = <2>;
