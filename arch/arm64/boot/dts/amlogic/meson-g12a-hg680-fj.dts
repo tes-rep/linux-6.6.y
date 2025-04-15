@@ -104,10 +104,6 @@ reserved-memory {
 	};
 };
 
-&vddao_3v3 {
-	vin-supply = <&dc_in>;
-};
-
 &pwm_ef {
 	status = "okay";
 	pinctrl-0 = <&pwm_e_pins>;
