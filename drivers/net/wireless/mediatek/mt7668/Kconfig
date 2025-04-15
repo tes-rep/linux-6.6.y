@@ -1,4 +1,4 @@
-menu "mt7668"
+menu "Mediatek MT7668S (SDIO) support"
 
 config MTK_COMBO_CHIP
 	string "MTK COMBO CHIP"
