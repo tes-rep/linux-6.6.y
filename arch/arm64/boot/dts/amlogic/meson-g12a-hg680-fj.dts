@@ -40,10 +40,6 @@
 		regulator-max-microvolt = <3300000>;
 	};
 
-	&vddao_3v3 {
-    		vin-supply = <&dc_in>;
-	};
-
 	vddio_ao1v8: regulator-vddio_ao1v8 {
 		compatible = "regulator-fixed";
 		regulator-name = "VDDIO_AO1V8";
@@ -106,6 +102,10 @@ reserved-memory {
 		device_type = "memory";
 		reg = <0x0 0x0 0x0 0x80000000>;
 	};
+};
+
+&vddao_3v3 {
+	vin-supply = <&dc_in>;
 };
 
 &pwm_ef {
