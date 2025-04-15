@@ -45,37 +45,16 @@
 		regulator-name = "VDDIO_AO1V8";
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
-		vin/* @sib0ndt */
-
-/dts-v1/;
-
-#include "meson-g12a-u200.dts"
-
-/ {
-	compatible = "hg680,fj", "amlogic,g12a";
-	model = "HG680-FJ";
-
-	vddgpu: regulator-vddgpu {
-		compatible = "regulator-fixed";
-		regulator-name = "mali";
-		regulator-min-microvolt = <800000>;
-		regulator-max-microvolt = <800000>;
-		vin/* @sib0ndt */
-
-/dts-v1/;
-
-#include "meson-g12a-u200.dts"
-
-/ {
-	compatible = "hg680,fj", "amlogic,g12a";
-	model = "HG680-FJ";
-
-	vddgpu: regulator-vddgpu {
-		compatible = "regulator-fixed";
-		regulator-name = "mali";
-		regulator-min-microvolt = <800000>;
-		regulator-max-microvolt = <800000>;
 		vin-supply = <&vddao_3v3>;
+		regulator-always-on;
+	};
+
+	vddao_3v3: regulator-vddao-3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "VDDAO_3V3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		vin-supply = <&dc_in>;
 		regulator-always-on;
 	};
 
@@ -118,21 +97,21 @@
 
 	};
 
-	reserved-memory {
-		secmon@5000000 {
-			reg = <0x0 0x05000000 0x0 0x03000000>;
-			no-map;
-		};
-		linux,cma {
-			size = <0x0 0x10000000>;
-		};
+reserved-memory {
+    secmon@5000000 {
+        reg = <0x0 0x05000000 0x0 0x03000000>;
+        no-map;
+    };
+    linux,cma {
+        size = <0x0 0x10000000>;
+    };
+};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x0 0x0 0x80000000>;
 	};
-	
-		memory@0 {
-			device_type = "memory";
-			reg = <0x0 0x0 0x0 0x80000000>;
-		};
-	};
+};
 
 &pwm_ef {
 	status = "okay";
@@ -149,22 +128,7 @@
 &hdmi_tx {
 	status = "okay";
 	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-	pinctrl-/* @sib0ndt */
-
-/dts-v1/;
-
-#include "meson-g12a-u200.dts"
-
-/ {
-	compatible = "hg680,fj", "amlogic,g12a";
-	model = "HG680-FJ";
-
-	vddgpu: regulator-vddgpu {
-		compatible = "regulator-fixed";
-		regulator-name = "mali";
-		regulator-min-microvolt = <800000>;
-		regulator-max-microvolt = <800000>;
-		vinnames = "default";
+	pinctrl-names = "default";
 };
 
 &hdmi_tx_tmds_port {
