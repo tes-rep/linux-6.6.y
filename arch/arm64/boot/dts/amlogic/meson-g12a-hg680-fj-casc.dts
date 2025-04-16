@@ -1,9 +1,0 @@
-/* @wyref */
-
-/dts-v1/;
-
-#include "meson-g12a-hg680-fj.dts"
-
-&vddao_3v3 {
-    vin-supply = <&dc_in>;
-};
