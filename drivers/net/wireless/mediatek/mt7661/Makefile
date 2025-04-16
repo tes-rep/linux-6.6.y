@@ -3,9 +3,9 @@
 ##############################################################
 # Common settings
 ##############################################################
-export MTK_COMBO_CHIP=MT7663
+export MT7661_COMBO_CHIP=MT7663
 export HIF=sdio
-export CONFIG_MTK_WIFI_ONLY=m
+export CONFIG_MT7661_WIFI_ONLY=m
 export CONFIG_MTK_COMBO=m
 export CONFIG_MTK_COMBO_WIFI=m
 export CONFIG_MTK_COMBO_COMM=m
@@ -103,15 +103,15 @@ WLAN_CHIP_LIST:=-UMT6620 -UMT6628 -UMT5931 -UMT6630 -UMT6632 -UMT7663 -UCONNAC -
 # All '-imacros file' and '-include file' options are processed after all '-D' and '-U' options.
 ccflags-y += $(WLAN_CHIP_LIST)
 
-ifeq ($(MTK_COMBO_CHIP),)
-MTK_COMBO_CHIP = MT7663
+ifeq ($(MT7661_COMBO_CHIP),)
+MT7661_COMBO_CHIP = MT7663
 endif
 
 $(info $$MTK_PLATFORM is [${MTK_PLATFORM}])
 $(info $$WLAN_CHIP_ID is [${WLAN_CHIP_ID}])
 
 ifeq ($(WLAN_CHIP_ID),)
-WLAN_CHIP_ID=$(word 1, $(MTK_COMBO_CHIP))
+WLAN_CHIP_ID=$(word 1, $(MT7661_COMBO_CHIP))
 endif
 
 ccflags-y += -DCFG_SUPPORT_DEBUG_FS=0
@@ -124,27 +124,27 @@ ccflags-y += -Werror
 #ccflags-y += -DLINUX -D$(WLAN_CHIP_ID)
 ccflags-y += -DLINUX
 
-ifneq ($(filter MT6632,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT6632,$(MT7661_COMBO_CHIP)),)
 ccflags-y:=$(filter-out -UMT6632,$(ccflags-y))
 ccflags-y += -DMT6632
 endif
 
-ifneq ($(filter MT7668,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT7668,$(MT7661_COMBO_CHIP)),)
 ccflags-y:=$(filter-out -UMT7668,$(ccflags-y))
 ccflags-y += -DMT7668
 endif
 
-ifneq ($(filter MT7663,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT7663,$(MT7661_COMBO_CHIP)),)
 ccflags-y:=$(filter-out -UMT7663,$(ccflags-y))
 ccflags-y += -DMT7663
 endif
 
-ifneq ($(filter CONNAC,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter CONNAC,$(MT7661_COMBO_CHIP)),)
 ccflags-y:=$(filter-out -UCONNAC,$(ccflags-y))
 ccflags-y += -DCONNAC
 endif
 
-ifneq ($(filter CONNAC2X2,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter CONNAC2X2,$(MT7661_COMBO_CHIP)),)
 ccflags-y:=$(filter-out -UCONNAC2X2,$(ccflags-y))
 ccflags-y += -DCONNAC2X2
 endif
@@ -155,7 +155,7 @@ endif
 
 ifeq ($(MTK_ANDROID_WMT), y)
     ccflags-y += -DCFG_MTK_ANDROID_WMT=1
-else ifneq ($(filter MT6632,$(MTK_COMBO_CHIP)),)
+else ifneq ($(filter MT6632,$(MT7661_COMBO_CHIP)),)
     ccflags-y += -DCFG_MTK_ANDROID_WMT=1
 else
     ccflags-y += -DCFG_MTK_ANDROID_WMT=0
@@ -167,7 +167,7 @@ else
     ccflags-y += -DCFG_MTK_ANDROID_EMI=0
 endif
 
-ifneq ($(filter MT7663 MT7668,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT7663 MT7668,$(MT7661_COMBO_CHIP)),)
     ccflags-y += -DCFG_MTK_EMI=0
 else
     ccflags-y += -DCFG_MTK_EMI=DCONFIG_MTK_EMI
@@ -474,8 +474,8 @@ ifneq ($(PLATFORM_FLAGS), )
     ccflags-y += $(PLATFORM_FLAGS)
 endif
 
-ifeq ($(CONFIG_MTK_WIFI_ONLY),$(filter $(CONFIG_MTK_WIFI_ONLY),m y))
-obj-$(CONFIG_MTK_WIFI_ONLY) += $(MODULE_NAME).o
+ifeq ($(CONFIG_MT7661_WIFI_ONLY),$(filter $(CONFIG_MT7661_WIFI_ONLY),m y))
+obj-$(CONFIG_MT7661_WIFI_ONLY) += $(MODULE_NAME).o
 else
 obj-$(CONFIG_MTK_COMBO_WIFI) += $(MODULE_NAME).o
 #obj-y += $(MODULE_NAME).o
@@ -589,19 +589,19 @@ MGMT_OBJS += $(MGMT_DIR)stats.o
 CHIPS_OBJS += $(CHIPS_CMM)cmm_asic_connac.o
 CHIPS_OBJS += $(CHIPS_CMM)fw_dl.o
 
-ifneq ($(filter MT6632,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT6632,$(MT7661_COMBO_CHIP)),)
 CHIPS_OBJS += $(CHIPS)mt6632/mt6632.o
 endif
-ifneq ($(filter MT7668,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT7668,$(MT7661_COMBO_CHIP)),)
 CHIPS_OBJS += $(CHIPS)mt7668/mt7668.o
 endif
-ifneq ($(filter MT7663,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter MT7663,$(MT7661_COMBO_CHIP)),)
 CHIPS_OBJS += $(CHIPS)mt7663/mt7663.o
 endif
-ifneq ($(filter CONNAC,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter CONNAC,$(MT7661_COMBO_CHIP)),)
 CHIPS_OBJS += $(CHIPS)connac/connac.o
 endif
-ifneq ($(filter CONNAC2X2,$(MTK_COMBO_CHIP)),)
+ifneq ($(filter CONNAC2X2,$(MT7661_COMBO_CHIP)),)
 CHIPS_OBJS += $(CHIPS)connac2x2/connac2x2.o
 endif
 
@@ -703,9 +703,9 @@ endif
 ##############################################################
 # Common settings
 ##############################################################
-export MTK_COMBO_CHIP=MT6632
+export MT7661_COMBO_CHIP=MT6632
 export HIF=sdio
-export CONFIG_MTK_WIFI_ONLY=m
+export CONFIG_MT7661_WIFI_ONLY=m
 export CONFIG_MTK_COMBO=m
 export CONFIG_MTK_COMBO_WIFI=m
 export CONFIG_MTK_COMBO_COMM=m
