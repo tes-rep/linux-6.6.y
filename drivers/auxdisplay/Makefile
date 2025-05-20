@@ -16,3 +16,4 @@ obj-$(CONFIG_LCD2S)		+= lcd2s.o
 obj-$(CONFIG_LINEDISP)		+= line-display.o
 obj-$(CONFIG_TM1628)		+= tm1628.o
 obj-$(CONFIG_OPENVFD)		+= openvfd/
+obj-$(CONFIG_FD6551)		+= fd6551.o
